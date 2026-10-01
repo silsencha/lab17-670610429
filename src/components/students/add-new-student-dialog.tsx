@@ -70,7 +70,7 @@ export function AddNewStudentDialog() {
   const form = useForm<StudentFormValues>({
     resolver: zodResolver(schema),
     defaultValues: emptyStudentForm,
-    mode: "onBlur", 
+    mode: "onBlur",
   });
 
   // ─── useFieldArray ───
@@ -188,7 +188,7 @@ export function AddNewStudentDialog() {
                     value={field.value ?? null}
                     onValueChange={(v) => {
                       field.onChange(v);
-                      field.onBlur(); 
+                      field.onBlur();
                     }}
                   >
                     <SelectTrigger
@@ -239,7 +239,7 @@ export function AddNewStudentDialog() {
                             field.onChange(
                               checked
                                 ? [...field.value, item.id]
-                                : field.value.filter((id) => id !== item.id)
+                                : field.value.filter((id) => id !== item.id),
                             );
                             field.onBlur();
                           }}
@@ -276,7 +276,10 @@ export function AddNewStudentDialog() {
                       name={`emails.${index}.address`}
                       control={form.control}
                       render={({ field, fieldState }) => (
-                        <Field data-invalid={fieldState.invalid} className="flex-1">
+                        <Field
+                          data-invalid={fieldState.invalid}
+                          className="flex-1"
+                        >
                           <FieldContent>
                             <Input
                               {...field}

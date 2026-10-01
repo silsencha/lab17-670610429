@@ -1,5 +1,8 @@
 # lab17-2569-starter — Zod + React Hook Form
 
+รหัสนักศึกษา: 670610429
+ชื่อ-สกุล: ศิลา เสนาพงษ์
+
 ```bash
 pnpm install
 pnpm dev

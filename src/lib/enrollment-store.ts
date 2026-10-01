@@ -16,7 +16,6 @@ type EnrollmentStore = {
   addStudent: (student: Student) => void;
   removeStudent: (studentId: string) => void;
   addCourse: (course: Course) => void;
-  removeInstructorFromCourse: (courseId: string, instructor: string) => void;
   removeCourse: (courseId: string) => void;
 };
 
@@ -28,7 +27,9 @@ export const useEnrollmentStore = create<EnrollmentStore>()(
       enrollments: initialEnrollments,
 
       addStudent: (student) =>
-        set((state) => ({ students: [...state.students, student] })),
+        set((state) => ({
+          students: [...state.students, student],
+        })),
 
       removeStudent: (studentId) =>
         set((state) => ({
@@ -39,20 +40,8 @@ export const useEnrollmentStore = create<EnrollmentStore>()(
         })),
 
       addCourse: (course) =>
-        set((state) => ({ courses: [...state.courses, course] })),
-
-      removeInstructorFromCourse: (courseId, instructor) =>
         set((state) => ({
-          courses: state.courses.map((course) =>
-            course.courseId === courseId
-              ? {
-                  ...course,
-                  instructors: course.instructors.filter(
-                    (name) => name !== instructor,
-                  ),
-                }
-              : course,
-          ),
+          courses: [...state.courses, course],
         })),
 
       removeCourse: (courseId) =>
@@ -61,6 +50,8 @@ export const useEnrollmentStore = create<EnrollmentStore>()(
           enrollments: state.enrollments.filter((e) => e.courseId !== courseId),
         })),
     }),
-    // เก็บเฉพาะ students/courses ลง localStorage — enrollments ไม่ persist
+    {
+      name: "lab17-2569-660610888",
+    },
   ),
 );
